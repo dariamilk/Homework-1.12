@@ -12,13 +12,29 @@ public class Book {
     public String getBookTitle () {
         return bookTitle;
     }
-    public String getAuthor () {
-        return author.getFirstName() + " " + author.getLastName();
+    public Author getAuthor () {
+        return author;
     }
     public int getPublicationYear () {
         return publicationYear;
     }
     public void setPublicationYear (int publicationYear) {
         this.publicationYear = publicationYear;
+    }
+    @Override
+    public String toString () {
+        return "Название книги: " + bookTitle + ".\n" + author + "\n" + "Год публикации: " + publicationYear + ".";
+    }
+    @Override
+    public boolean equals (Object other) {
+       if (this.getClass() != other.getClass()) {
+           return false;
+       }
+       Book book = (Book) other;
+       return bookTitle.equals(book.bookTitle) && author.equals(book.author) && (publicationYear == book.publicationYear);
+    }
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(bookTitle, author, publicationYear);
     }
 }
